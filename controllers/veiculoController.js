@@ -3,11 +3,27 @@ const Veiculo = require('../models/Veiculo'); // Importa o modelo Veiculo
 // Criar um novo veículo
 const criarVeiculo = async (req, res) => {
     try {
-        const veiculo = new Veiculo(req.body);
+        const { placa, tipo, pne } = req.body;
+
+        // Validação de campos obrigatórios
+        if (!placa || !tipo) {
+            return res.status(400).send({ error: 'Placa e tipo do veículo são obrigatórios.' });
+        }
+
+        // Verificar duplicatas
+        const veiculoExistente = await Veiculo.findOne({ placa });
+        if (veiculoExistente) {
+            return res.status(400).send({ error: 'Veículo com esta placa já está registrado.' });
+        }
+
+        // Criar e salvar o novo veículo
+        const veiculo = new Veiculo({ placa, tipo, pne });
         await veiculo.save();
+
         res.status(201).send(veiculo);
     } catch (error) {
-        res.status(400).send(error);
+        console.error('Erro ao criar veículo:', error);
+        res.status(500).send({ error: 'Erro interno do servidor.' });
     }
 };
 
