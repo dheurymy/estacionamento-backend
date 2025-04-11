@@ -20,7 +20,7 @@ const criarVagas = async (req, res) => {
   }
 };
 
-module.exports = { criarVagas };
+
 
 // Listar todas as vagas
 const listarVagas = async (req, res) => {
@@ -54,4 +54,4 @@ const deletarVaga = async (req, res) => {
     }
 };
 
-module.exports = { criarVaga, listarVagas, atualizarVaga, deletarVaga };
+module.exports = { criarVagas, listarVagas, atualizarVaga, deletarVaga };

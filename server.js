@@ -44,7 +44,7 @@ app.put('/veiculos/:id', veiculoController.atualizarVeiculo);
 app.delete('/veiculos/:id', veiculoController.deletarVeiculo);
 
 // Rotas para Vaga
-app.post('/vagas', vagaController.criarVagas);
+app.post('/vagas', vagaController.criarVaga);
 app.get('/vagas', vagaController.listarVagas);
 app.put('/vagas/:id', vagaController.atualizarVaga);
 app.delete('/vagas/:id', vagaController.deletarVaga);
