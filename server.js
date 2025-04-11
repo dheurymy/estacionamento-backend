@@ -48,6 +48,7 @@ app.post('/vagas', vagaController.criarVagas);
 app.get('/vagas', vagaController.listarVagas);
 app.put('/vagas/:id', vagaController.atualizarVaga);
 app.delete('/vagas/:id', vagaController.deletarVaga);
+app.delete('/vagas', vagaController.deletarVagasPorTipo);
 
 // Rotas para Ticket
 app.post('/tickets', ticketController.criarTicket);
