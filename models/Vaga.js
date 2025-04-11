@@ -11,10 +11,6 @@ const VagaSchema = new mongoose.Schema({ // Cria um novo esquema de vaga
     required: true, // Campo obrigatório
     default: false,
   },
-  identificador: {
-    type: String,
-    required: true,
-  }
 });
 
 
