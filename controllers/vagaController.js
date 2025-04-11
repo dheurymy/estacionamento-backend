@@ -54,4 +54,43 @@ const deletarVaga = async (req, res) => {
     }
 };
 
-module.exports = { criarVagas, listarVagas, atualizarVaga, deletarVaga };
+
+
+// Deletar vagas por tipo e quantidade
+const deletarVagasPorTipo = async (req, res) => {
+  try {
+    const { tipo, quantidade } = req.body;
+
+    // Verifica se tipo e quantidade são válidos
+    if (!tipo || !quantidade || quantidade <= 0) {
+      return res.status(400).json({ error: 'Tipo e quantidade válidos são obrigatórios.' });
+    }
+
+    // Contar quantas vagas existem do tipo especificado
+    const totalVagas = await Vaga.countDocuments({ tipo });
+
+    // Verifica se a quantidade solicitada é maior do que as vagas disponíveis
+    if (quantidade > totalVagas) {
+      return res.status(400).json({ 
+        error: `Não é possível deletar ${quantidade} vagas do tipo "${tipo}". Apenas ${totalVagas} vagas disponíveis.` 
+      });
+    }
+
+    // Encontrar vagas do tipo especificado e limitar à quantidade solicitada
+    const vagasParaDeletar = await Vaga.find({ tipo }).limit(quantidade);
+
+    // Deletar as vagas
+    const vagasDeletadas = await Vaga.deleteMany({ _id: { $in: vagasParaDeletar.map(vaga => vaga._id) } });
+
+    res.status(200).json({ 
+      message: `${vagasDeletadas.deletedCount} vagas do tipo "${tipo}" deletadas com sucesso.` 
+    });
+  } catch (error) {
+    console.error('Erro ao deletar vagas:', error);
+    res.status(500).json({ error: 'Erro ao deletar vagas.' });
+  }
+};
+
+
+
+module.exports = { criarVagas, listarVagas, atualizarVaga, deletarVaga, deletarVagasPorTipo };
