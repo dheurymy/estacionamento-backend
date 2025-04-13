@@ -1,4 +1,6 @@
 const Veiculo = require('../models/Veiculo'); // Importa o modelo Veiculo
+const Ticket = require('../models/Ticket');
+const Vaga = require('../models/Vaga');
 
 // Criar um novo veículo
 const criarVeiculo = async (req, res) => {
@@ -59,4 +61,47 @@ const deletarVeiculo = async (req, res) => {
     }
 };
 
-module.exports = { criarVeiculo, listarVeiculos, atualizarVeiculo, deletarVeiculo };
+// Registrar veículo e gerar ticket
+
+const registrarVeiculoComTicket = async (req, res) => {
+  try {
+    const { placa, tipo, pne } = req.body;
+
+    // Verifica se há vagas disponíveis para o tipo de veículo
+    const vagaDisponivel = await Vaga.findOne({ tipo, ocupada: false });
+    if (!vagaDisponivel) {
+      return res.status(400).json({ error: 'Não há vagas disponíveis para este tipo de veículo.' });
+    }
+
+    // Cria o veículo no banco de dados
+    const veiculo = new Veiculo({ placa, tipo, pne });
+    await veiculo.save();
+
+    // Cria o ticket associado ao veículo e à vaga
+    const ticket = new Ticket({
+      numero: `TICKET-${Date.now()}`,
+      veiculo: veiculo._id,
+      vaga: vagaDisponivel._id,
+    });
+    await ticket.save();
+
+    // Atualiza o status da vaga para ocupada
+    vagaDisponivel.ocupada = true;
+    await vagaDisponivel.save();
+
+    // Retorna informações do veículo, ticket e vaga
+    res.status(201).json({
+      message: 'Veículo registrado com sucesso, ticket gerado e vaga atualizada.',
+      veiculo,
+      ticket,
+      vaga: vagaDisponivel,
+    });
+  } catch (error) {
+    console.error('Erro ao registrar veículo:', error);
+    res.status(500).json({ error: 'Erro ao registrar veículo e gerar ticket.' });
+  }
+};
+
+
+
+module.exports = { registrarVeiculoComTicket, criarVeiculo, listarVeiculos, atualizarVeiculo, deletarVeiculo };

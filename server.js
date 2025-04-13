@@ -43,6 +43,13 @@ app.get('/veiculos', veiculoController.listarVeiculos);
 app.put('/veiculos/:id', veiculoController.atualizarVeiculo);
 app.delete('/veiculos/:id', veiculoController.deletarVeiculo);
 
+
+
+
+app.post('/veiculos/registrar', veiculoController.registrarVeiculoComTicket);
+
+
+
 // Rotas para Vaga
 app.post('/vagas', vagaController.criarVagas);
 app.get('/vagas', vagaController.listarVagas);
