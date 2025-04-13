@@ -68,7 +68,7 @@ const registrarVeiculoComTicket = async (req, res) => {
     const { placa, tipoVeiculo, preferencial } = req.body;
 
     // Verifica se há vagas disponíveis para o tipo de veículo
-    const vagaDisponivel = await Vaga.findOne({ tipoVeiculo, ocupada: false });
+    const vagaDisponivel = await Vaga.findOne({ tipoVeiculo, tipoVaga, ocupada: false });
     if (!vagaDisponivel) {
       return res.status(400).json({ error: 'Não há vagas disponíveis para este tipo de veículo.' });
     }
