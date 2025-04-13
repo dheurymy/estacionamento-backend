@@ -1,18 +1,21 @@
-const mongoose = require('mongoose'); // Importa o módulo mongoose
+const mongoose = require('mongoose');
 
-
-const VagaSchema = new mongoose.Schema({ // Cria um novo esquema de vaga
-  tipo: {
-    type: String, // Define o tipo como String
+// Cria o esquema de Vaga para o MongoDB
+const VagaSchema = new mongoose.Schema({
+  tipoVaga: {
+    type: String, // Tipo da vaga (ex.: preferencial, comum)
     required: true, // Campo obrigatório
+  },
+  tipoVeiculo: {
+    type: String, // Tipo de veículo associado à vaga (ex.: carro, moto)
+    required: true, // Campo obrigatório
+    enum: ['carro', 'moto'], // Restringe os valores possíveis
   },
   ocupada: {
-    type: Boolean, // Define o tipo como Booleano
+    type: Boolean, // Indica se a vaga está ocupada
     required: true, // Campo obrigatório
-    default: false,
+    default: false, // Valor padrão: vaga desocupada
   },
 });
-
-
 
 module.exports = mongoose.model('Vaga', VagaSchema); // Exporta o modelo Vaga baseado no esquema
