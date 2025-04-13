@@ -5,7 +5,7 @@ const Vaga = require('../models/Vaga');
 // Criar um novo veículo
 const criarVeiculo = async (req, res) => {
     try {
-        const { placa, tipo, pne } = req.body;
+        const { placa, tipo, preferencial } = req.body;
 
         // Validação de campos obrigatórios
         if (!placa || !tipo) {
@@ -19,7 +19,7 @@ const criarVeiculo = async (req, res) => {
         }
 
         // Criar e salvar o novo veículo
-        const veiculo = new Veiculo({ placa, tipo, pne });
+        const veiculo = new Veiculo({ placa, tipo, preferencial});
         await veiculo.save();
 
         res.status(201).send(veiculo);
@@ -65,7 +65,7 @@ const deletarVeiculo = async (req, res) => {
 
 const registrarVeiculoComTicket = async (req, res) => {
   try {
-    const { placa, tipo, pne } = req.body;
+    const { placa, tipo, preferencial } = req.body;
 
     // Verifica se há vagas disponíveis para o tipo de veículo
     const vagaDisponivel = await Vaga.findOne({ tipo, ocupada: false });
@@ -74,7 +74,7 @@ const registrarVeiculoComTicket = async (req, res) => {
     }
 
     // Cria o veículo no banco de dados
-    const veiculo = new Veiculo({ placa, tipo, pne });
+    const veiculo = new Veiculo({ placa, tipo, preferencial });
     await veiculo.save();
 
     // Cria o ticket associado ao veículo e à vaga

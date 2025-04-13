@@ -11,11 +11,10 @@ const VeiculoSchema = new mongoose.Schema({ // Cria um novo esquema de veiculo
     required: true, // Campo obrigatório
     enum: ['carro', 'moto']
   },
-  pne: {
+  preferencial: {
     type: Boolean, // Define o tipo como Booleano
-    required: true, // Campo obrigatório
-    default: false,
-  }
+    default: false, // Valor padrão é falso
+  },
 });
 
 
