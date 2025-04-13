@@ -6,7 +6,7 @@ const VeiculoSchema = new mongoose.Schema({ // Cria um novo esquema de veiculo
     type: String, // Define o tipo como String
     required: true, // Campo obrigatório
   },
-  tipo: {
+  tipoVeiculo: {
     type: String, // Define o tipo como String
     required: true, // Campo obrigatório
     enum: ['carro', 'moto']
