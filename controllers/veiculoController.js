@@ -73,6 +73,12 @@ const registrarVeiculoComTicket = async (req, res) => {
       return res.status(400).json({ error: 'Não há vagas disponíveis para este tipo de veículo.' });
     }
 
+    // Verificar duplicatas
+    const veiculoExistente = await Veiculo.findOne({ placa });
+    if (veiculoExistente) {
+        return res.status(400).send({ error: 'Veículo com esta placa já está registrado.' });
+    }
+
     // Cria o veículo no banco de dados
     const veiculo = new Veiculo({ placa, tipoVeiculo, preferencial });
     await veiculo.save();
