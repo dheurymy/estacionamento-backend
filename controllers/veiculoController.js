@@ -66,6 +66,7 @@ const deletarVeiculo = async (req, res) => {
 const registrarVeiculoComTicket = async (req, res) => {
   try {
     const { placa, tipoVeiculo, preferencial } = req.body;
+    const tipoVaga = preferencial ? 'preferencial' : 'comum'; // Define o tipo de vaga com base na preferência
 
     // Verifica se há vagas disponíveis para o tipo de veículo
     const vagaDisponivel = await Vaga.findOne({ tipoVeiculo, tipoVaga, ocupada: false });
