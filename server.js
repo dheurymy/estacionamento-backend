@@ -40,6 +40,7 @@ app.get('/', (req, res) => {
 // Rotas para Veículo
 app.post('/veiculos', veiculoController.criarVeiculo);
 app.get('/veiculos', veiculoController.listarVeiculos);
+app.get('/veiculos/:id', veiculoController.pegarVeiculo);
 app.put('/veiculos/:id', veiculoController.atualizarVeiculo);
 app.delete('/veiculos/:id', veiculoController.deletarVeiculo);
 

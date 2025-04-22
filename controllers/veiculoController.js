@@ -39,6 +39,17 @@ const listarVeiculos = async (req, res) => {
     }
 };
 
+// Pegar dados de um veiculo 
+const pegarVeiculo = async (req, res) => {
+    try {
+        const veiculo = await Veiculo.findById(req.params.id);
+        if (!veiculo) return res.status(404).send({ error: 'Veículo não encontrado' });
+        res.send(veiculo);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
+
 // Atualizar um veículo
 const atualizarVeiculo = async (req, res) => {
     try {
@@ -111,4 +122,4 @@ const registrarVeiculoComTicket = async (req, res) => {
 
 
 
-module.exports = { registrarVeiculoComTicket, criarVeiculo, listarVeiculos, atualizarVeiculo, deletarVeiculo };
+module.exports = { registrarVeiculoComTicket, criarVeiculo, listarVeiculos, pegarVeiculo, atualizarVeiculo, deletarVeiculo };
