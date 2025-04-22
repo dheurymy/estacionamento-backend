@@ -13,6 +13,7 @@ const TicketSchema = new mongoose.Schema({
   },
   dataSaida: {
     type: Date, // Registra a data e hora de saída, se aplicável
+    default: Date.now, // Define a hora atual como padrão
   },
   valor: {
     type: Number, // Valor a ser pago (calculado na saída)
