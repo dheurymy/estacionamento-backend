@@ -32,6 +32,17 @@ const atualizarTicket = async (req, res) => {
     }
 };
 
+// Pegar um ticket por numero
+const pegarTicketPorNumero = async (req, res) => {
+    try {
+        const ticket = await Ticket.findOne({ numero: req.params.numero });
+        if (!ticket) return res.status(404).send({ error: 'Ticket não encontrado' });
+        res.send(ticket);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
+
 // Deletar um ticket
 const deletarTicket = async (req, res) => {
     try {
@@ -43,4 +54,4 @@ const deletarTicket = async (req, res) => {
     }
 };
 
-module.exports = { criarTicket, listarTickets, atualizarTicket, deletarTicket };
+module.exports = { criarTicket, listarTickets, atualizarTicket, pegarTicketPorNumero, deletarTicket };

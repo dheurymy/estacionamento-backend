@@ -62,6 +62,7 @@ app.post('/tickets', ticketController.criarTicket);
 app.get('/tickets', ticketController.listarTickets);
 app.put('/tickets/:id', ticketController.atualizarTicket);
 app.delete('/tickets/:id', ticketController.deletarTicket);
+app.get('/tickets/:numero', ticketController.pegarTicketPorNumero);
 
 
 
