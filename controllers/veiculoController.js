@@ -50,16 +50,7 @@ const pegarVeiculo = async (req, res) => {
     }
 };
 
-// Atualizar um veículo
-const atualizarVeiculo = async (req, res) => {
-    try {
-        const veiculo = await Veiculo.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!veiculo) return res.status(404).send({ error: 'Veículo não encontrado' });
-        res.send(veiculo);
-    } catch (error) {
-        res.status(400).send(error);
-    }
-};
+
 
 // Deletar um veículo
 const deletarVeiculo = async (req, res) => {
