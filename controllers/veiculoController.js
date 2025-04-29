@@ -113,4 +113,4 @@ const registrarVeiculoComTicket = async (req, res) => {
 
 
 
-module.exports = { registrarVeiculoComTicket, criarVeiculo, listarVeiculos, pegarVeiculo, atualizarVeiculo, deletarVeiculo };
+module.exports = { registrarVeiculoComTicket, criarVeiculo, listarVeiculos, pegarVeiculo,  deletarVeiculo };
