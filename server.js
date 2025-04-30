@@ -6,6 +6,7 @@ const dotenv = require('dotenv'); // Importa o módulo dotenv para gerenciar var
 const veiculoController = require('./controllers/veiculoController');
 const vagaController = require('./controllers/vagaController');
 const ticketController = require('./controllers/ticketController');
+const userController = require('./controllers/userController');
 
 
 dotenv.config(); // Carrega as variáveis de ambiente do arquivo .env
