@@ -2,6 +2,9 @@ const express = require('express'); // Importa o módulo express para criar o se
 const mongoose = require('mongoose'); // Importa o módulo mongoose para interagir com o MongoDB
 const cors = require('cors'); // Importa o módulo cors para permitir requisições de diferentes origens
 const dotenv = require('dotenv'); // Importa o módulo dotenv para gerenciar variáveis de ambiente
+const jwt = require('jsonwebtoken'); // Importa o módulo jsonwebtoken para criar e verificar tokens JWT
+const bcrypt = require('bcryptjs'); // Importa o módulo bcrypt para hash de senhas
+
 
 const veiculoController = require('./controllers/veiculoController');
 const vagaController = require('./controllers/vagaController');
