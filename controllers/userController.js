@@ -37,7 +37,7 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: 'Credenciais inválidas' }); // Retorna mensagem de credenciais inválidas com status 401
     }
 
-    const token = jwt.sign({ userId: user._id, name: user.name, email: user.email }, secret, { // Gera um token JWT com o ID do usuário
+    const token = jwt.sign({ userId: user._id, email: user.email }, secret, { // Gera um token JWT com o ID do usuário
       expiresIn: '1h', // Define a expiração do token para 1 hora
     });
 
