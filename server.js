@@ -19,7 +19,7 @@ app.use(cors()); // Utiliza o middleware CORS
 app.use(express.json()); // Utiliza o middleware para parsear o corpo das requisições como JSON
 
 app.use((req, res, next) => { 
-  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin'); 
+  res.setHeader('Cross-Origin-Opener-Policy', 'no-cors'); 
   next(); 
 });
 
