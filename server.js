@@ -41,12 +41,7 @@ app.get('/', (req, res) => {
 app.post('/veiculos', veiculoController.criarVeiculo);
 app.get('/veiculos', veiculoController.listarVeiculos);
 app.get('/veiculos/:id', veiculoController.pegarVeiculo);
-
 app.delete('/veiculos/:id', veiculoController.deletarVeiculo);
-
-
-
-
 app.post('/veiculos/registrar', veiculoController.registrarVeiculoComTicket);
 
 
@@ -64,6 +59,11 @@ app.get('/tickets', ticketController.listarTickets);
 app.put('/tickets/:id', ticketController.atualizarTicket);
 app.delete('/tickets/:id', ticketController.deletarTicket);
 app.get('/tickets/:numero', ticketController.pegarTicketPorNumero);
+
+//Rotas para Usuário
+app.post('/usuarios', userController.registerUser); // Rota para registrar um novo usuário
+app.post('/login', userController.loginUser); // Rota para fazer login de um usuário
+app.post('/logout', userController.logoutUser); // Rota para fazer logout de um usuário
 
 
 
