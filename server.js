@@ -16,7 +16,14 @@ const app = express(); // Cria uma instância do aplicativo Express
 const PORT = process.env.PORT || 5000; // Define a porta do servidor a partir da variável de ambiente ou usa 5000 como padrão
 const MONGO_URI = process.env.MONGO_URI; // Obtém a URI de conexão do MongoDB a partir da variável de ambiente
 
-app.use(cors()); // Utiliza o middleware CORS
+
+const corsOptions = {
+    origin: '*', // Permite requisições de qualquer origem (pode ser ajustado)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
+};
+
+app.use(cors(corsOptions));
 app.use(express.json()); // Utiliza o middleware para parsear o corpo das requisições como JSON
 
 app.use((req, res, next) => { 
