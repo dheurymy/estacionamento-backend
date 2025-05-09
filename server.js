@@ -56,6 +56,7 @@ app.get('/tickets', ticketController.listarTickets);
 app.put('/tickets/:id', ticketController.atualizarTicket);
 app.delete('/tickets/:id', ticketController.deletarTicket);
 app.get('/tickets/:numero', ticketController.pegarTicketPorNumero);
+app.put('/tickets/:numero', ticketController.atualizarTicketPorNumero);
 
 // Rotas para Usuário
 app.post('/usuarios', userController.registerUser);

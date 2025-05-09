@@ -42,6 +42,24 @@ const pegarTicketPorNumero = async (req, res) => {
         res.status(500).send(error);
     }
 };
+// Atualizar um ticket por numero
+const atualizarTicketPorNumero = async (req, res) => {
+    try {
+        const ticket = await Ticket.findOneAndUpdate(
+            { numero: req.params.numero }, // Busca pelo número do ticket
+            req.body, 
+            { new: true } // Retorna o ticket atualizado
+        );
+        
+        if (!ticket) {
+            return res.status(404).send({ error: 'Ticket não encontrado' });
+        }
+
+        res.send(ticket);
+    } catch (error) {
+        res.status(400).send({ error: 'Erro ao atualizar o ticket', detalhes: error });
+    }
+};
 
 // Deletar um ticket
 const deletarTicket = async (req, res) => {
