@@ -72,4 +72,4 @@ const deletarTicket = async (req, res) => {
     }
 };
 
-module.exports = { criarTicket, listarTickets, atualizarTicket, pegarTicketPorNumero, deletarTicket };
+module.exports = { criarTicket, listarTickets, atualizarTicket, pegarTicketPorNumero, deletarTicket, atualizarTicketPorNumero };

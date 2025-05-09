@@ -31,7 +31,7 @@ const TicketSchema = new mongoose.Schema({
   },
   status: {
     type: String, // Status do ticket (ex: "aberto", "fechado")
-    enum: ['aberto', 'fechado'], // Restringe os valores possíveis
+    
     default: 'aberto', // Define o padrão como "aberto"
   },
 });
