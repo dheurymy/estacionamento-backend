@@ -29,6 +29,11 @@ const TicketSchema = new mongoose.Schema({
     ref: 'Vaga', // Faz referência ao modelo "Vaga"
     required: true,
   },
+  status: {
+    type: String, // Status do ticket (ex: "aberto", "fechado")
+    enum: ['aberto', 'fechado'], // Restringe os valores possíveis
+    default: 'aberto', // Define o padrão como "aberto"
+  },
 });
 
 module.exports = mongoose.model('Ticket', TicketSchema); // Exporta o modelo Ticket baseado no esquema
